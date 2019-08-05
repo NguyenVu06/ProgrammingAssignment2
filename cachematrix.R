@@ -8,7 +8,7 @@
 
 
 
-makeCacheMatrix<- function(x){
+makeCacheMatrix<- function(x = matrix()){
   #Initialize the objects
   i <- NULL #set m to Null, to be used later within makeCacheMatrix
   #define the set function that takes y as the argument
@@ -46,3 +46,14 @@ cacheSolve <- function(x, ...) { #x is the argument, ... allows for passing addi
   x$setInverse(i)
   i
 }
+
+##test code
+
+aMatrix <- matrix(round(rnorm(25, 100, 2)), 5)
+Mx <- makeCacheMatrix(aMatrix)
+Mx$get()
+Mx$set(matrix(round(rnorm(36, 80, 12)), 6))
+Mx$getInverse()
+Mx$get()
+invMx <- cacheSolve(Mx)
+Mx$getInverse()
